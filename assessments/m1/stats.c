@@ -56,6 +56,7 @@ void main() {
   sort_array(Array);
   Array.min = find_min(Array.numArray, Array.arrayLength);
   Array.max = find_max(Array.numArray, Array.arrayLength);
+  Array.mean = find_mean(Array.numArray, Array.arrayLength);
   print_array(Array);
   print_statistics(Array);
 }
@@ -114,4 +115,16 @@ uint8_t find_max(uint8_t *arrayPtr, uint8_t arrayLength){
   }
 
   return maxValue;
+}
+
+uint8_t find_mean(uint8_t *arrayPtr, uint8_t arrayLength){
+  uint32_t avg=0;
+
+  // Add up all the numbers in the array
+  for(uint8_t i=0; i<arrayLength; i++){
+    avg+= arrayPtr[i];
+  }
+  
+  // Integer division using Array Length
+  return (avg/arrayLength);
 }
