@@ -1,21 +1,21 @@
 /******************************************************************************
- * Copyright (C) 2017 by Alex Fosdick - University of Colorado
+ * Copyright (C) 2021 by @author
  *
  * Redistribution, modification or use of this software in source or binary
  * forms is permitted as long as the files maintain this copyright. Users are 
  * permitted to modify this and use it to learn about the field of embedded
- * software. Alex Fosdick and the University of Colorado are not liable for any
- * misuse of this material. 
+ * software. Josh Illes is not liable for any misuse of this material. 
  *
  *****************************************************************************/
 /**
- * @file <Add File Name> 
- * @brief <Add Brief Description Here >
+ * @file stats.c
+ * @brief Function prototypes for providing statics on an array of numbers, 
+ *   and general practice in the "C" language
  *
- * <Add Extended Description Here>
  *
- * @author <Add FirsName LastName>
- * @date <Add date >
+ * @author Joshua Illes
+ * @date 2021-02-09
+ *
  *
  */
 
@@ -51,13 +51,13 @@ void main() {
   Array.mean = 0;
   Array.median = 0;
 
-  print_array(Array);
-  print_statistics(Array);
-  sort_array(Array);
+  // Process Data
+  sort_array(Array.numArray, Array.arrayLength);
   Array.min = find_min(Array.numArray, Array.arrayLength);
   Array.max = find_max(Array.numArray, Array.arrayLength);
   Array.mean = find_mean(Array.numArray, Array.arrayLength);
-  print_array(Array);
+  Array.median = find_median(Array.numArray, Array.arrayLength);
+  print_array(Array.numArray, Array.arrayLength);
   print_statistics(Array);
 }
 
@@ -69,25 +69,25 @@ void print_statistics(stat ArrayStats){
   printf("Array Size: %u\n", ArrayStats.arrayLength);
 }
 
-void print_array(stat ArrayStats){
+void print_array(uint8_t *arrayPtr, uint8_t arrayLength){
   // Loop through and print the array
-  for(uint8_t i=0; i<ArrayStats.arrayLength; i++){
-    printf("array[%u]: %u\n", i, *(ArrayStats.numArray + sizeof(char)*i));
+  for(uint8_t i=0; i<arrayLength; i++){
+    printf("array[%u]: %u\n", i, *(arrayPtr + sizeof(char)*i));
   }
   printf("\n");
   return;
 }
 
-void sort_array(stat ArrayStats){
+void sort_array(uint8_t *arrayPtr, uint8_t arrayLength){
   uint8_t i, j = 0;
   uint8_t temp;
   // Sort Array
-  for(i=0; i<ArrayStats.arrayLength; i++){
-    for(j=i+1; j<ArrayStats.arrayLength; j++){
-      if(ArrayStats.numArray[i]<ArrayStats.numArray[j]){
-        temp = ArrayStats.numArray[i];
-        ArrayStats.numArray[i]=ArrayStats.numArray[j];
-        ArrayStats.numArray[j]=temp;
+  for(i=0; i<arrayLength; i++){
+    for(j=i+1; j<arrayLength; j++){
+      if(arrayPtr[i]<arrayPtr[j]){
+        temp = arrayPtr[i];
+        arrayPtr[i]=arrayPtr[j];
+        arrayPtr[j]=temp;
       }
     }
   }
@@ -127,4 +127,18 @@ uint8_t find_mean(uint8_t *arrayPtr, uint8_t arrayLength){
   
   // Integer division using Array Length
   return (avg/arrayLength);
+}
+
+uint8_t find_median(uint8_t *arrayPtr, uint8_t arrayLength){
+  // Make sure array is sorted first
+  sort_array(arrayPtr, arrayLength);
+
+  // Case where array length is odd
+  if (arrayLength%2){
+    return arrayPtr[arrayLength/2];
+  }
+
+  // Case where array length is even.  Average between two middle values is necessary
+  uint8_t avg = (arrayPtr[arrayLength/2 - 1]+arrayPtr[arrayLength/2])/2;
+  return avg;
 }
