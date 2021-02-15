@@ -13,12 +13,7 @@
 SOURCES = \
 	./main.c \
 	./memory.c \
-	./startup_msp432p401r_gcc.c \
-	./startup_msp432p401r.c 
 
 # Add your include paths to this variable
-INCLUDES = \
-	../include/CMSIS \
-	../include/common \
-	../include/msp432 \
+INCLUDES = -I ../include/common
 
