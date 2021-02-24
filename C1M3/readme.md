@@ -1,5 +1,5 @@
 # Solutions to Programming Assignment Quiz
-I am copying and pasting from [this forum thread](https://www.coursera.org/learn/introduction-embedded-systems/discussions/weeks/3/threads/wgokwUgyEemuthIculYtRg) as this test was driving me nuts and I hope other weary students can utilize this information to **learn**.
+I am copying and pasting from [this forum thread](https://www.coursera.org/learn/introduction-embedded-systems/discussions/weeks/3/threads/wgokwUgyEemuthIculYtRg) as this test was driving me nuts and I hope other weary students can utilize this information to **learn**.  If this information helped you out, please star my repo so I know people utilize it.  If I have anything wrong, please create an issue or a pull request.
 
 Sometimes I don't specify it in the explination but think:
 
