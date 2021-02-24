@@ -13,11 +13,11 @@
 
     *Your main function will be very simple. You will just need to call a function that is defined in the course1.c source file. However, you need to use a compile time switch to wrap this function to call. This way we can have a simple main() function that can switch which course deliverable we wish to call by specifying the -DCOURSE1 compile time switch.*
 
-        ```c
-            #ifdef COURSE1
-            course1();
-            #endif
-        ```
+  ```c
+      #ifdef COURSE1
+      course1();
+      #endif
+  ```
 
 - [ ] Modify `print_array()` function so you can enable/disable print with a compile time switch.  Compile time switch should be enabled with **VERBOSE** flag  (`-DVERBOSE`).
 - [ ] Modify *printf* to use the **PRINTF** macro defined in `platform.h`
