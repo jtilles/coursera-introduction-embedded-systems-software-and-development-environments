@@ -23,58 +23,63 @@
 
 #include <stdio.h>
 #include <stdint.h>
+#include "platform.h"
 #include "stats.h"
 
 
 /* Size of the Data Set */
 #define SIZE (40)
 
-void main() {
+// void main() {
 
-  unsigned char test[SIZE] = { 34, 201, 190, 154,   8, 194,   2,   6,
-                              114, 88,   45,  76, 123,  87,  25,  23,
-                              200, 122, 150, 90,   92,  87, 177, 244,
-                              201,   6,  12,  60,   8,   2,   5,  67,
-                                7,  87, 250, 230,  99,   3, 100,  90,};
+//   unsigned char test[SIZE] = { 34, 201, 190, 154,   8, 194,   2,   6,
+//                               114, 88,   45,  76, 123,  87,  25,  23,
+//                               200, 122, 150, 90,   92,  87, 177, 244,
+//                               201,   6,  12,  60,   8,   2,   5,  67,
+//                                 7,  87, 250, 230,  99,   3, 100,  90,};
 
-  /* Other Variable Declarations Go Here */
-  /* Statistics and Printing Functions Go Here */
+//   /* Other Variable Declarations Go Here */
+//   /* Statistics and Printing Functions Go Here */
 
-  // Create Struct
-  stat Array;
+//   // Create Struct
+//   stat Array;
 
-  // Initialize Struct
-  Array.numArray = test;
-  Array.arrayLength = SIZE;
-  Array.max = 0;
-  Array.min = 0xFF;
-  Array.mean = 0;
-  Array.median = 0;
+//   // Initialize Struct
+//   Array.numArray = test;
+//   Array.arrayLength = SIZE;
+//   Array.max = 0;
+//   Array.min = 0xFF;
+//   Array.mean = 0;
+//   Array.median = 0;
 
-  // Process Data
-  sort_array(Array.numArray, Array.arrayLength);
-  Array.min = find_min(Array.numArray, Array.arrayLength);
-  Array.max = find_max(Array.numArray, Array.arrayLength);
-  Array.mean = find_mean(Array.numArray, Array.arrayLength);
-  Array.median = find_median(Array.numArray, Array.arrayLength);
-  print_array(Array.numArray, Array.arrayLength);
-  print_statistics(Array);
-}
+//   // Process Data
+//   sort_array(Array.numArray, Array.arrayLength);
+//   Array.min = find_min(Array.numArray, Array.arrayLength);
+//   Array.max = find_max(Array.numArray, Array.arrayLength);
+//   Array.mean = find_mean(Array.numArray, Array.arrayLength);
+//   Array.median = find_median(Array.numArray, Array.arrayLength);
+//   print_array(Array.numArray, Array.arrayLength);
+//   print_statistics(Array);
+// }
 
 void print_statistics(stat ArrayStats){
-  printf("Array Min: %u\n", ArrayStats.min);
-  printf("Array Max: %u\n", ArrayStats.max);
-  printf("Array Mean: %u\n", ArrayStats.mean);
-  printf("Array Median: %u\n", ArrayStats.median);
-  printf("Array Size: %u\n", ArrayStats.arrayLength);
+  #ifdef VERBOSE
+    PRINTF("Array Min: %u\n", ArrayStats.min);
+    PRINTF("Array Max: %u\n", ArrayStats.max);
+    PRINTF("Array Mean: %u\n", ArrayStats.mean);
+    PRINTF("Array Median: %u\n", ArrayStats.median);
+    PRINTF("Array Size: %u\n", ArrayStats.arrayLength);
+  #else
+    return;
+  #endif
 }
 
 void print_array(uint8_t *arrayPtr, uint8_t arrayLength){
   // Loop through and print the array
   for(uint8_t i=0; i<arrayLength; i++){
-    printf("array[%u]: %u\n", i, *(arrayPtr + sizeof(char)*i));
+    PRINTF("array[%u]: %u\n", i, *(arrayPtr + sizeof(char)*i));
   }
-  printf("\n");
+  PRINTF("\n");
   return;
 }
 

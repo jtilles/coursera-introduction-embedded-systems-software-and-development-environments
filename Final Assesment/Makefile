@@ -32,18 +32,34 @@
 
 include sources.mk
 
+SHELL=/bin/bash
+
+SRC_DIR := ./src
+OBJ_DIR := ./obj
+INC_DIR := ./include
+
+SOURCES = 	$(SRC_DIR)/main.c \
+			$(SRC_DIR)/memory.c
+			# $(SRC_DIR)/course1.c 
+			# $(SRC_DIR)/stats.c \
+
+INCLUDES = -I include/common/
+
 # Platform Overrides
 PLATFORM=HOST
 
+# Compile time switch
+COURSE1=false
+
+
 # General Flags for all platforms
-GEN_FLAGS = \
-			-Wall \
-			-Werror \
+GEN_FLAGS = -Wall \
 			-g \
 			-O0 \
 			-std=c99
+			# -Werror \
 
-TARGET = c1m2
+TARGET = final_assesment
 
 # Platform Dependant Variables
 ifeq ($(PLATFORM),MSP432)
@@ -55,8 +71,8 @@ ifeq ($(PLATFORM),MSP432)
 				./system_msp432p401r.c \
 				./interrupts_msp432p401r_gcc.c
 	
-	INCLUDES+= 	-I ../include/CMSIS/ \
-				-I ../include/msp432/
+	INCLUDES+= 	-I include/CMSIS/ \
+				-I include/msp432/
 
 	# Compiler
 	CC = arm-none-eabi-gcc
@@ -89,12 +105,17 @@ else
 
 endif
 
+# IF COURSE1 is defined, add a flag
+ifeq ($(COURSE1), true)
+	CPPFLAGS += -DCOURSE1
+endif
+
 PREP = $(SOURCES:.c=.i)	# Preprocessor Files
 DEPS = $(SOURCES:.c=.d)	# Dependancy Files
 ASMS = $(SOURCES:.c=.asm)	# Assembly Files
 OBJS = $(SOURCES:.c=.o)	# Object files
 
-.PHONY: compile-all build clean
+.PHONY: compile-all build clean run
 
 # Compile all object files and link into a final executable.
 build: $(TARGET).out
@@ -125,4 +146,8 @@ compile-all: $(OBJS)
 clean:
 	# This should remove all compiled objects, preprocessed outputs, assembly outputs, executable files and build output files.
 	@echo Removing all built files
-	rm -f *.out *.map *.o *.asm *.i
+	rm -f ${SRC_DIR}/*{.o,.out,.map,.asm,.i} $(TARGET).out
+
+# Build all and run file
+run: $(TARGET).out
+	./$(TARGET).out
