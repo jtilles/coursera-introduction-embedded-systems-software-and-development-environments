@@ -80,9 +80,7 @@ uint8_t my_itoa(int32_t data, uint8_t * ptr, uint32_t base){
     for(uint8_t i=0 ; i<strLength; i++){
         *(ptr+i)=tempArray[strLength-1-i];
     }
-    
-    printf("Character String: %s\n", ptr);
-    // printf("%d characters long\n", strLength);
+
 
     return strLength;
 }
@@ -93,20 +91,14 @@ int32_t my_atoi(uint8_t * ptr, uint8_t digits, uint32_t base){
     uint32_t myNumber=0;
     uint8_t *charPtr = ptr;
 
-    // printf("Pointer location: 0x%x\n", ptr);
-    // printf("Size of string: %d\n", digits);
-    printf("\n\nString: %s\n", ptr);
-
     if(*charPtr == '-'){
         isNegativeFlag = 1;
         digits--;
         charPtr++;
     }
 
-    
     // While not Null Character, add values
     uint8_t i = 0;
-    printf("digits: %d\n", digits);
     do {
         uint32_t multiplier = pow(base,(digits-2-i));
         uint8_t digit = *(charPtr+i);
@@ -124,8 +116,6 @@ int32_t my_atoi(uint8_t * ptr, uint8_t digits, uint32_t base){
     if(isNegativeFlag){
         myNumber*=-1;
     }
-
-    printf("MyNumber: %d\n", myNumber);
     
     return myNumber;
 }

@@ -89,7 +89,7 @@ int8_t test_memmove1() {
   uint8_t * ptra;
   uint8_t * ptrb;
 
-  PRINTF("\n\ntest_memmove1() - NO OVERLAP\n");
+  PRINTF("test_memmove1() - NO OVERLAP\n");
   set = (uint8_t*) reserve_words( MEM_SET_SIZE_W );
 
   if (! set ) 
@@ -131,7 +131,7 @@ int8_t test_memmove2() {
   uint8_t * ptra;
   uint8_t * ptrb;
 
-  PRINTF("\n\ntest_memmove2() -OVERLAP END OF SRC BEGINNING OF DST\n");
+  PRINTF("test_memmove2() -OVERLAP END OF SRC BEGINNING OF DST\n");
   set = (uint8_t*) reserve_words(MEM_SET_SIZE_W);
 
   if (! set )

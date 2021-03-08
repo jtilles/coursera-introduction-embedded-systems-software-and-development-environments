@@ -5,11 +5,35 @@
 1. Write c-program functions that manipulate memory
 1. Execute and test your application by simulating it on the host machine
 
+
+## Use
+### Normal
+1. Invoke make to build and run all files with:
+    ```
+    make run
+    ```
+### COURSE1
+1. To run the unit test specified in `course1.c` you can define the make variable `COURSE1` as true:
+    ```
+    make run COURSE1=true
+    ```
+### VERBOSE
+1. To run the unit test specified in `course1.c` with extra debugging information you can define the make variable `VERBOSE` as true:
+    ``` 
+    make run VERBOSE=true COURSE1=true
+    ```
+### Clean
+1. To make *clean* or *clobber* (delete all generated files), issue the following command:
+    ```
+    make clean
+    ```
+
+
 ## Roadmap
 ### Previous Files
 
-- [ ] Copy and paste source files and functions from Week1 & Week2
-- [ ] Compile time switch for main function.  
+- [x] Copy and paste source files and functions from Week1 & Week2
+- [x] Compile time switch for main function.  
 
     *Your main function will be very simple. You will just need to call a function that is defined in the course1.c source file. However, you need to use a compile time switch to wrap this function to call. This way we can have a simple main() function that can switch which course deliverable we wish to call by specifying the -DCOURSE1 compile time switch.*
 
@@ -19,12 +43,12 @@
     #endif
 ```
 
-- [ ] Modify `print_array()` function so you can enable/disable print with a compile time switch.  Compile time switch should be enabled with **VERBOSE** flag  (`-DVERBOSE`).
-- [ ] Modify *printf* to use the **PRINTF** macro defined in `platform.h`
+- [x] Modify `print_array()` function so you can enable/disable print with a compile time switch.  Compile time switch should be enabled with **VERBOSE** flag  (`-DVERBOSE`).
+- [x] Modify *printf* to use the **PRINTF** macro defined in `platform.h`
 
 ---
 ### Memory Functions
-- [ ] Memory Move Function:
+- [x] Memory Move Function:
     ```
     uint8_t * my_memmove(uint8_t * src, uint8_t * dst, size_t length);
     ```
@@ -34,7 +58,7 @@
     3. All operations need to be performed using pointer arithmetic, not array indexing
     4. Should return a pointer to the destination (dst).
 
-- [ ] Memory Copy Function:
+- [x] Memory Copy Function:
     ```
     uint8_t * my_memcopy(uint8_t * src, uint8_t * dst, size_t length);
     ```
@@ -44,7 +68,7 @@
     3. All operations need to be performed using pointer arithmetic, not array indexing
     4. Should return a pointer to the destination (dst).
 
-- [ ] Memory Set Function:
+- [x] Memory Set Function:
     ```
     uint8_t * my_memset(uint8_t * src, size_t length, uint8_t value);
     ```
@@ -53,7 +77,7 @@
     3. Should return a pointer to the source (src).
     4. You should NOT reuse the set_all() function
 
-- [ ] Memory Zero Function:
+- [x] Memory Zero Function:
     ```
     uint8_t * my_memzero(uint8_t * src, size_t length);
     ```
@@ -62,7 +86,7 @@
     3. Should return a pointer to the source (src).
     4. You should NOT reuse the clear_all() function
 
-- [ ] Reverse order of bytes Function:
+- [x] Reverse order of bytes Function:
     ```
     uint8_t * my_reverse(uint8_t * src, size_t length);
     ```
@@ -70,7 +94,7 @@
     2. All operations need to be performed using pointer arithmetic, not array indexing
     3. Should return a pointer to the source.
 
-- [ ] Reserve Word in Memory Function:
+- [x] Reserve Word in Memory Function:
     ```
     int32_t * reserve_words(size_t length);
     ```
@@ -78,7 +102,7 @@
     2. All operations need to be performed using pointer arithmetic, not array indexing
     3. Should return a pointer to memory if successful, or a Null Pointer if not successful
 
-- [ ] Free Words Function
+- [x] Free Words Function
     ```
     void free_words(int32_t * src);
     ```
@@ -88,7 +112,7 @@
 ---
 ### data.c/data.h Requirements
 
-- [ ] Integer to ASCII function:
+- [x] Integer to ASCII function:
     ```
     uint8_t my_itoa(int32_t data, uint8_t * ptr, uint32_t base)
     ```
@@ -103,7 +127,7 @@
   9. This function needs to handle signed data.
   10. You may not use any string functions or libraries
 
-- [ ] ASCII to Integer function:
+- [x] ASCII to Integer function:
     ```
     int32_t my_atoi(uint8_t * ptr, uint8_t digits, uint32_t base)
     ```
