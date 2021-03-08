@@ -139,5 +139,3 @@
    5. The converted 32-bit signed integer should be returned.
    6. This function needs to handle signed data.
    7. You may not use any string functions or libraries
-
-
