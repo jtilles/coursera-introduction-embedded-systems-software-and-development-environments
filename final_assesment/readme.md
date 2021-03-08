@@ -8,25 +8,25 @@
 
 ## Use
 ### Normal
-1. Invoke make to build and run all files with:
-    ```
-    make run
-    ```
+Invoke make to build and run all files with:
+```
+make run
+```
 ### COURSE1
-1. To run the unit test specified in `course1.c` you can define the make variable `COURSE1` as true:
-    ```
-    make run COURSE1=true
-    ```
+To run the unit test specified in `course1.c` you can define the make variable `COURSE1` as true:
+```
+make run COURSE1=true
+```
 ### VERBOSE
-1. To run the unit test specified in `course1.c` with extra debugging information you can define the make variable `VERBOSE` as true:
-    ``` 
-    make run VERBOSE=true COURSE1=true
-    ```
+To run the unit test specified in `course1.c` with extra debugging information you can define the make variable `VERBOSE` as true:
+``` 
+make run VERBOSE=true COURSE1=true
+```
 ### Clean
-1. To make *clean* or *clobber* (delete all generated files), issue the following command:
-    ```
-    make clean
-    ```
+To make *clean* or *clobber* (delete all generated files), issue the following command:
+```
+make clean
+```
 
 
 ## Roadmap
