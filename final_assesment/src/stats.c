@@ -77,7 +77,7 @@ void print_array(uint8_t *arrayPtr, uint8_t arrayLength){
   #ifdef VERBOSE
     // Loop through and print the array
     for(uint8_t i=0; i<arrayLength; i++){
-      PRINTF("array[%u](0x%u): %u\n", i, arrayPtr+i, *(arrayPtr + sizeof(char)*i));
+      PRINTF("array[%u](0x%x): %u\n", i, arrayPtr+i, *(arrayPtr + sizeof(char)*i));
     }
     PRINTF("\n");
   #endif

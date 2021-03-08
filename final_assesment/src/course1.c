@@ -304,11 +304,11 @@ int8_t test_reverse()
   copy = (uint8_t*)reserve_words(MEM_SET_SIZE_W);
   if (! copy )
   {
+    PRINTF("ERROR dynamically allocating memory");
     return TEST_ERROR;
   }
   
   my_memcopy(set, copy, MEM_SET_SIZE_B);
-
   print_array(set, MEM_SET_SIZE_B);
   my_reverse(set, MEM_SET_SIZE_B);
   print_array(set, MEM_SET_SIZE_B);
@@ -335,13 +335,12 @@ int8_t course1(void)
   results[1] = test_data2();
   results[2] = test_memmove1();
   results[3] = test_memmove2();
-  // results[4] = test_memmove3();
-  // results[5] = test_memcopy();
-  // results[6] = test_memset();
-  // results[7] = test_reverse();
+  results[4] = test_memmove3();
+  results[5] = test_memcopy();
+  results[6] = test_memset();
+  results[7] = test_reverse();
 
-  // for ( i = 0; i < TESTCOUNT; i++) 
-  for ( i = 0; i < 4; i++) 
+  for ( i = 0; i < TESTCOUNT; i++) 
   {
     failed += results[i];
     if (results[i]==TEST_ERROR){

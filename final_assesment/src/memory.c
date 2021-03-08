@@ -26,9 +26,9 @@
  * @date Wed Mar 03 2021
  *
  *****************************************************************************/
-#include "memory.h"
-#include <stdint.h>
 #include <stdlib.h>
+#include <stdint.h>
+#include "memory.h"
 
 /***********************************************************
  Function Definitions
@@ -57,7 +57,6 @@ void clear_all(char * ptr, unsigned int size){
 }
 
 uint8_t * my_memmove(uint8_t * src, uint8_t * dst, size_t length){
-    // printf("\nMoving data of size %d from 0x%x to 0x%x\n", length, src, dst);
     // Create pointers to the pointers
     uint8_t *d = dst;
     uint8_t *s = src;
@@ -72,17 +71,14 @@ uint8_t * my_memmove(uint8_t * src, uint8_t * dst, size_t length){
     else{
         uint8_t *lasts = s + (length-1);    // gets the address of the last source byte
         uint8_t *lastd = d + (length-1);    // gets the address of the last destination byte
-        // printf("Last address of source: 0x%x\nLast address of destination: 0x%x\n", lasts, lastd);
         while (length--){
-            *lastd++ = *lasts++;
+            *lastd-- = *lasts--;
         }
     }
-
     return dst;
 }
 
 uint8_t * my_memcopy(uint8_t * src, uint8_t * dst, size_t length){
-    // printf("\nCOPYING data of size %d from 0x%x to 0x%x\n", length, src, dst);
     uint8_t *d = dst;
     uint8_t *s = src;
     while (length){
@@ -93,7 +89,6 @@ uint8_t * my_memcopy(uint8_t * src, uint8_t * dst, size_t length){
 }
 
 uint8_t * my_memset(uint8_t * src, size_t length, uint8_t value){
-    // printf("\nSetting memory location 0x%x-0x%x to %u\n", src, src+length-1, value);
     uint8_t *s = src;
     while (length){
         length--;
@@ -108,7 +103,11 @@ uint8_t * my_memzero(uint8_t * src, size_t length){
 
 uint8_t * my_reverse(uint8_t * src, size_t length){
     // printf("Reversing the order of %d bytes located between 0x%u-0x%u\n", length, src, src+length-1);
-    uint8_t *temp = malloc(length); // Temp memory to hold existing content
+    uint8_t *temp;
+    temp = (uint8_t*)malloc(length*sizeof(uint8_t)); // Temp memory to hold existing content
+    if(! temp){
+        printf("ERROR: allocating dynamic memory for my_reverse function call\n");
+    }
     uint8_t *lastTemp = temp+length; // Pointer to last position in temp memory
     for(int i=0; i<length; i++){
         *(temp+i)=*(src+i);
@@ -122,7 +121,7 @@ uint8_t * my_reverse(uint8_t * src, size_t length){
 }
 
 int32_t * reserve_words(size_t length){
-    return malloc(length);
+    return malloc(length*sizeof(length));
 }
 
 void free_words(uint32_t * src){
