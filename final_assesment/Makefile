@@ -30,8 +30,6 @@
 # -ansi -std=STANDARD  Which standard version to use (ex: c89, c99)
 # -v  Verbose output form GCC
 
-include sources.mk
-
 SHELL=/bin/bash
 
 SRC_DIR := ./src
