@@ -25,7 +25,7 @@ Sometimes I don't specify it in the explination but think:
 | Data         | 4         |
 | const/rodata | 5         |
 | None         | 6         |
-| Test         | 7         |
+| Text         | 7         |
 
 
 ### 3rd Digit
